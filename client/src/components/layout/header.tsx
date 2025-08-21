@@ -8,6 +8,14 @@ export default function Header() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const handleServicesClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Services", href: "/#services" },
@@ -34,16 +42,29 @@ export default function Header() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isActive(item.href) ? "text-primary" : "text-muted-foreground"
-                }`}
-                data-testid={`nav-link-${item.name.toLowerCase()}`}
-              >
-                {item.name}
-              </Link>
+              item.name === "Services" ? (
+                <button
+                  key={item.name}
+                  onClick={handleServicesClick}
+                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                    location === "/" ? "text-primary" : "text-muted-foreground"
+                  }`}
+                  data-testid={`nav-link-${item.name.toLowerCase()}`}
+                >
+                  {item.name}
+                </button>
+              ) : (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                    isActive(item.href) ? "text-primary" : "text-muted-foreground"
+                  }`}
+                  data-testid={`nav-link-${item.name.toLowerCase()}`}
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
           </div>
 
@@ -79,17 +100,33 @@ export default function Header() {
           <div className="md:hidden border-t border-border bg-background">
             <div className="px-4 py-3 space-y-3">
               {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`block text-sm font-medium py-2 transition-colors hover:text-primary ${
-                    isActive(item.href) ? "text-primary" : "text-muted-foreground"
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  data-testid={`mobile-nav-link-${item.name.toLowerCase()}`}
-                >
-                  {item.name}
-                </Link>
+                item.name === "Services" ? (
+                  <button
+                    key={item.name}
+                    onClick={(e) => {
+                      handleServicesClick(e);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`block text-sm font-medium py-2 transition-colors hover:text-primary text-left w-full ${
+                      location === "/" ? "text-primary" : "text-muted-foreground"
+                    }`}
+                    data-testid={`mobile-nav-link-${item.name.toLowerCase()}`}
+                  >
+                    {item.name}
+                  </button>
+                ) : (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={`block text-sm font-medium py-2 transition-colors hover:text-primary ${
+                      isActive(item.href) ? "text-primary" : "text-muted-foreground"
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    data-testid={`mobile-nav-link-${item.name.toLowerCase()}`}
+                  >
+                    {item.name}
+                  </Link>
+                )
               ))}
               <Button 
                 className="w-full bg-gradient-to-r from-primary to-violet-500 hover:from-primary-600 hover:to-violet-600 mt-3"
