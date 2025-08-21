@@ -55,7 +55,7 @@ export default function Hero() {
             <div className="space-y-6">
               <Badge className="inline-flex items-center px-4 py-2 bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20">
                 <Star className="w-4 h-4 text-amber-500 mr-2" />
-                Trusted by 500+ enterprises worldwide
+                Trusted by 150+ enterprises worldwide
               </Badge>
               
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
