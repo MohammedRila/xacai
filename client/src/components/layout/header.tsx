@@ -46,9 +46,7 @@ export default function Header() {
                 <button
                   key={item.name}
                   onClick={handleServicesClick}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
-                    location === "/" ? "text-primary" : "text-muted-foreground"
-                  }`}
+                  className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
                   data-testid={`nav-link-${item.name.toLowerCase()}`}
                 >
                   {item.name}
@@ -107,9 +105,7 @@ export default function Header() {
                       handleServicesClick(e);
                       setIsMobileMenuOpen(false);
                     }}
-                    className={`block text-sm font-medium py-2 transition-colors hover:text-primary text-left w-full ${
-                      location === "/" ? "text-primary" : "text-muted-foreground"
-                    }`}
+                    className="block text-sm font-medium py-2 transition-colors hover:text-primary text-left w-full text-muted-foreground"
                     data-testid={`mobile-nav-link-${item.name.toLowerCase()}`}
                   >
                     {item.name}
