@@ -1,6 +1,42 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Rocket, Play, Star } from "lucide-react";
+import { useState, useEffect } from "react";
+
+function CountUpNumber({ target, suffix = "", prefix = "", duration = 2000 }: { target: number; suffix?: string; prefix?: string; duration?: number }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let startTime: number;
+    let animationFrame: number;
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function for smooth animation
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(target * easeOut);
+      
+      setCount(current);
+      
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+    
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
+  }, [target, duration]);
+
+  return <span>{prefix}{count}{suffix}</span>;
+}
 
 export default function Hero() {
   return (
@@ -53,18 +89,26 @@ export default function Hero() {
             </div>
             
             {/* Trust Indicators */}
-            <div className="grid grid-cols-3 gap-6 pt-8">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary" data-testid="metric-retention">98%</div>
-                <div className="text-sm text-muted-foreground">Client Retention</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary" data-testid="metric-savings">$50M+</div>
-                <div className="text-sm text-muted-foreground">Costs Saved</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary" data-testid="metric-integrations">200+</div>
-                <div className="text-sm text-muted-foreground">AI Integrations</div>
+            <div className="flex justify-center pt-8">
+              <div className="grid grid-cols-3 gap-8 max-w-2xl">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary" data-testid="metric-retention">
+                    <CountUpNumber target={92} suffix="%" duration={2500} />
+                  </div>
+                  <div className="text-sm text-muted-foreground">Client Retention</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary" data-testid="metric-savings">
+                    <CountUpNumber target={1.2} prefix="$" suffix="M" duration={2500} />
+                  </div>
+                  <div className="text-sm text-muted-foreground">Costs Saved</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary" data-testid="metric-integrations">
+                    <CountUpNumber target={85} suffix="+" duration={2500} />
+                  </div>
+                  <div className="text-sm text-muted-foreground">AI Integrations</div>
+                </div>
               </div>
             </div>
           </div>
