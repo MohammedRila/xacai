@@ -2,25 +2,25 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const testimonials = [
   {
-    quote: "XACAI cut our ops costs by 32% in 90 days. The speed and precision of their AI implementations transformed how we operate.",
-    author: "Sarah Chen",
-    role: "COO, Fintech Scaleup",
-    metric: "32% cost reduction in 90 days",
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b14c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100"
+    quote: "I was honestly skeptical about AI consulting at first, but XACAI completely changed my perspective. They didn't just give us fancy algorithms - they actually understood our manufacturing bottlenecks and built solutions that work in the real world. Our production planning is now automated and we're saving about $180K annually in overtime costs alone.",
+    author: "David Park",
+    role: "Operations Director, TechFlow Manufacturing",
+    metric: "$180K saved in first year",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100"
   },
   {
-    quote: "From chaos to clarity — we finally have predictive visibility into our supply chain and customer demand patterns.",
-    author: "Marcus Rodriguez",
-    role: "VP Strategy, Retail Enterprise",
-    metric: "85% forecast accuracy improvement",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100"
+    quote: "Working with XACAI felt like having a tech co-founder who actually gets business. They spent weeks understanding our customer journey before writing a single line of code. Now our recommendation engine drives 40% of our revenue and customers keep asking how we know exactly what they want.",
+    author: "Rebecca Martinez",
+    role: "CEO, StyleHub E-commerce",
+    metric: "40% revenue from AI recommendations",
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100"
   },
   {
-    quote: "They ship real outcomes. Our AI helpdesk now resolves 74% of tickets autonomously with higher satisfaction scores.",
-    author: "Jennifer Walsh",
-    role: "Head of CX, SaaS Unicorn",
-    metric: "74% autonomous resolution rate",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100"
+    quote: "Before XACAI, we were drowning in customer support tickets and hiring wasn't fast enough. Their AI support system handles the routine stuff flawlessly, and our team can focus on complex issues that actually need human touch. Our response times dropped from 6 hours to under 30 minutes.",
+    author: "James Thompson",
+    role: "Customer Success Lead, CloudSync Solutions",
+    metric: "30-minute average response time",
+    avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100"
   }
 ];
 
