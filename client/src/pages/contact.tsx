@@ -302,6 +302,7 @@ export default function Contact() {
                   </p>
                   <Button 
                     className="bg-background text-primary hover:bg-background/90"
+                    onClick={() => window.open(`https://wa.me/12109758369?text=Hi%20XACAI,%20I'm%20interested%20in%20booking%20a%20discovery%20call%20to%20discuss%20AI%20transformation%20for%20my%20business.`, '_blank')}
                     data-testid="button-book-call"
                   >
                     <Calendar className="w-5 h-5 mr-2" />
