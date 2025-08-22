@@ -81,8 +81,8 @@ export default function Hero() {
             </div>
             
             {/* Trust Indicators */}
-            <div className="flex justify-center pt-8">
-              <div className="grid grid-cols-3 gap-8 max-w-2xl">
+            <div className="flex justify-center items-center pt-8 w-full">
+              <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary" data-testid="metric-retention">
                     <CountUpNumber target={92} suffix="%" duration={2500} />
