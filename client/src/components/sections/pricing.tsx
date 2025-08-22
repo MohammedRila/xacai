@@ -85,19 +85,6 @@ export default function Pricing() {
                     </li>
                   ))}
                 </ul>
-                
-                <Button 
-                  className={`w-full ${
-                    plan.buttonVariant === 'default' 
-                      ? 'bg-gradient-to-r from-primary to-violet-500 hover:from-primary-600 hover:to-violet-600' 
-                      : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'
-                  }`}
-                  variant={plan.buttonVariant}
-                  size="lg"
-                  data-testid={`button-plan-${index}`}
-                >
-                  {plan.buttonText}
-                </Button>
               </CardContent>
             </Card>
           ))}
