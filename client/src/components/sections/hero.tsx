@@ -50,18 +50,35 @@ export default function Hero() {
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <div className="space-y-6">
-              <Badge className="inline-flex items-center px-4 py-2 bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20">
+        <div className="space-y-8 max-w-6xl mx-auto">
+          <div className="space-y-6">
+            <Badge className="inline-flex items-center px-4 py-2 bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20">
                 <Star className="w-4 h-4 text-amber-500 mr-2" />
                 Trusted by 150+ enterprises worldwide
               </Badge>
               
-              <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                <span className="text-foreground">Transform Your</span><br />
-                <span className="text-gradient">Business with AI</span>
-              </h1>
+              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
+                <h1 className="text-5xl lg:text-7xl font-bold leading-tight lg:flex-1">
+                  <span className="text-foreground">Transform Your</span><br />
+                  <span className="text-gradient">Business with AI</span>
+                </h1>
+                
+                <div className="relative lg:flex-shrink-0">
+                  <img 
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300" 
+                    alt="Professional team collaborating on AI solutions" 
+                    className="rounded-2xl shadow-2xl hover-lift w-80 h-60 object-cover"
+                    data-testid="img-hero-team"
+                  />
+                  <div className="absolute -bottom-4 -right-4 glass-effect rounded-xl p-4 shadow-xl">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                      <span className="font-semibold text-foreground text-sm">AI Active</span>
+                    </div>
+                    <div className="text-xl font-bold text-primary mt-1">24/7</div>
+                  </div>
+                </div>
+              </div>
               
               <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
                 We don't just implement AI—we craft intelligent solutions that adapt, learn, and evolve with your business. From competitive intelligence to predictive analytics, XACAI delivers measurable results that compound over time.
@@ -102,22 +119,6 @@ export default function Hero() {
                   <div className="text-sm text-muted-foreground">AI Integrations</div>
                 </div>
               </div>
-            </div>
-          </div>
-          
-          <div className="relative">
-            <img 
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
-              alt="Professional team collaborating on AI solutions" 
-              className="rounded-2xl shadow-2xl hover-lift"
-              data-testid="img-hero-team"
-            />
-            <div className="absolute -bottom-6 -right-6 glass-effect rounded-xl p-6 shadow-xl">
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
-                <span className="font-semibold text-foreground">AI Systems Active</span>
-              </div>
-              <div className="text-2xl font-bold text-primary mt-2">24/7</div>
             </div>
           </div>
         </div>
