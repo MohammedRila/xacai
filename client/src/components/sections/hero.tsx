@@ -68,23 +68,15 @@ export default function Hero() {
               </p>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex justify-center">
               <Button 
                 size="lg" 
                 className="bg-gradient-to-r from-primary to-violet-500 hover:from-primary-600 hover:to-violet-600 text-lg px-8 py-4"
                 data-testid="button-start-journey"
+                onClick={() => window.open('https://wa.me/12109758369', '_blank')}
               >
                 <Rocket className="w-5 h-5 mr-2" />
                 Start Your AI Journey
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="text-lg px-8 py-4 hover:bg-primary hover:text-primary-foreground"
-                data-testid="button-watch-demo"
-              >
-                <Play className="w-5 h-5 mr-2" />
-                Watch Demo
               </Button>
             </div>
             
