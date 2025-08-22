@@ -15,7 +15,7 @@ const plans = [
       "30-day Slack support included",
       "Performance analytics dashboard"
     ],
-    buttonText: "Get Started Now",
+    buttonText: "",
     buttonVariant: "outline" as const
   },
   {
@@ -30,7 +30,7 @@ const plans = [
       "24/7 monitoring & support",
       "Custom AI model development"
     ],
-    buttonText: "Start Transformation",
+    buttonText: "",
     buttonVariant: "default" as const,
     popular: true
   }
