@@ -65,15 +65,7 @@ export default function Header() {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Button 
-              className="bg-gradient-to-r from-primary to-violet-500 hover:from-primary-600 hover:to-violet-600"
-              data-testid="button-get-started"
-            >
-              Get Started
-            </Button>
-          </div>
+          
 
           {/* Mobile menu button */}
           <div className="md:hidden">
@@ -123,12 +115,6 @@ export default function Header() {
                   </Link>
                 )
               ))}
-              <Button 
-                className="w-full bg-gradient-to-r from-primary to-violet-500 hover:from-primary-600 hover:to-violet-600 mt-3"
-                data-testid="button-mobile-get-started"
-              >
-                Get Started
-              </Button>
             </div>
           </div>
         )}
