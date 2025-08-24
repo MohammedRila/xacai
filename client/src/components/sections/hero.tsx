@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Rocket, Play, Star } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useCurrency } from "@/hooks/use-currency";
+import { convertPrice } from "@/lib/currency";
 
 function CountUpNumber({ target, suffix = "", prefix = "", duration = 2000 }: { target: number; suffix?: string; prefix?: string; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -39,6 +41,11 @@ function CountUpNumber({ target, suffix = "", prefix = "", duration = 2000 }: { 
 }
 
 export default function Hero() {
+  const { currencyInfo, isLoading } = useCurrency();
+  
+  // Convert 1.2M USD to user's currency
+  const convertedAmount = isLoading ? 1.2 : convertPrice(1200000, currencyInfo) / 1000000;
+  
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background */}
@@ -91,7 +98,7 @@ export default function Hero() {
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary" data-testid="metric-savings">
-                    <CountUpNumber target={1.2} prefix="£" suffix="M" duration={2500} />
+                    <CountUpNumber target={convertedAmount} prefix={currencyInfo.symbol} suffix="M" duration={2500} />
                   </div>
                   <div className="text-sm text-muted-foreground">Costs Saved</div>
                 </div>
