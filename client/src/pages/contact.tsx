@@ -293,7 +293,7 @@ Message: ${data.message}`;
                     </div>
                     <div>
                       <div className="font-semibold text-foreground">Phone</div>
-                      <div className="text-muted-foreground">+1 (555) 123-4567</div>
+                      <div className="text-muted-foreground">+1 (210) 975-8369</div>
                     </div>
                   </div>
                   
@@ -303,7 +303,7 @@ Message: ${data.message}`;
                     </div>
                     <div>
                       <div className="font-semibold text-foreground">Office</div>
-                      <div className="text-muted-foreground">123 Innovation Drive<br />San Francisco, CA 94105</div>
+                      <div className="text-muted-foreground">500 West 2nd Street<br />Austin, TX 78701</div>
                     </div>
                   </div>
                   
