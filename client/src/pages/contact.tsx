@@ -10,11 +10,14 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { insertContactSchema, type InsertContact } from "@shared/schema";
-import { Mail, Phone, MapPin, Clock, Calendar, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Calendar, Send, Globe } from "lucide-react";
+import { useCurrency } from "@/hooks/use-currency";
+import { convertPrice, formatCurrency } from "@/lib/currency";
 
 export default function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { currencyInfo, isLoading } = useCurrency();
 
   const form = useForm<InsertContact>({
     resolver: zodResolver(insertContactSchema),
@@ -187,7 +190,15 @@ Message: ${data.message}`;
                       name="budget"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Project Budget</FormLabel>
+                          <FormLabel className="flex items-center gap-2">
+                            Project Budget
+                            {!isLoading && currencyInfo.code !== 'USD' && (
+                              <span className="text-xs text-muted-foreground flex items-center gap-1">
+                                <Globe className="w-3 h-3" />
+                                {currencyInfo.code}
+                              </span>
+                            )}
+                          </FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                               <SelectTrigger data-testid="select-budget">
@@ -195,10 +206,22 @@ Message: ${data.message}`;
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              <SelectItem value="2000-5000">£2,000 - £5,000</SelectItem>
-                              <SelectItem value="5000-15000">£5,000 - £15,000</SelectItem>
-                              <SelectItem value="15000-50000">£15,000 - £50,000</SelectItem>
-                              <SelectItem value="50000+">£50,000+</SelectItem>
+                              <SelectItem value="2000-5000">
+                                {isLoading ? '$2,000 - $5,000' : 
+                                 `${formatCurrency(convertPrice(2000, currencyInfo), currencyInfo)} - ${formatCurrency(convertPrice(5000, currencyInfo), currencyInfo)}`}
+                              </SelectItem>
+                              <SelectItem value="5000-15000">
+                                {isLoading ? '$5,000 - $15,000' : 
+                                 `${formatCurrency(convertPrice(5000, currencyInfo), currencyInfo)} - ${formatCurrency(convertPrice(15000, currencyInfo), currencyInfo)}`}
+                              </SelectItem>
+                              <SelectItem value="15000-50000">
+                                {isLoading ? '$15,000 - $50,000' : 
+                                 `${formatCurrency(convertPrice(15000, currencyInfo), currencyInfo)} - ${formatCurrency(convertPrice(50000, currencyInfo), currencyInfo)}`}
+                              </SelectItem>
+                              <SelectItem value="50000+">
+                                {isLoading ? '$50,000+' : 
+                                 `${formatCurrency(convertPrice(50000, currencyInfo), currencyInfo)}+`}
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage />
