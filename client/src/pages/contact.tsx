@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +9,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
 import { insertContactSchema, type InsertContact } from "@shared/schema";
 import { Mail, Phone, MapPin, Clock, Calendar, Send } from "lucide-react";
 
@@ -31,31 +29,35 @@ export default function Contact() {
     },
   });
 
-  const submitContactMutation = useMutation({
-    mutationFn: async (data: InsertContact) => {
-      return apiRequest("POST", "/api/contact", data);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Message sent successfully!",
-        description: "We'll get back to you within 24 hours.",
-      });
-      form.reset();
-      setIsSubmitting(false);
-    },
-    onError: (error: any) => {
-      toast({
-        title: "Error sending message",
-        description: error.message || "Please try again later.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-    },
-  });
+  
 
   const onSubmit = (data: InsertContact) => {
     setIsSubmitting(true);
-    submitContactMutation.mutate(data);
+    
+    // Format message for WhatsApp
+    const message = `New Contact Form Submission:
+    
+Name: ${data.firstName} ${data.lastName}
+Email: ${data.email}
+${data.company ? `Company: ${data.company}` : ''}
+${data.phone ? `Phone: ${data.phone}` : ''}
+${data.budget ? `Budget: ${data.budget}` : ''}
+
+Message: ${data.message}`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/12109758369?text=${encodedMessage}`;
+    
+    // Open WhatsApp
+    window.open(whatsappUrl, '_blank');
+    
+    toast({
+      title: "Redirecting to WhatsApp",
+      description: "Your message has been prepared and WhatsApp is opening.",
+    });
+    
+    form.reset();
+    setIsSubmitting(false);
   };
 
   useEffect(() => {
@@ -193,10 +195,10 @@ export default function Contact() {
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              <SelectItem value="2000-5000">$2,000 - $5,000</SelectItem>
-                              <SelectItem value="5000-15000">$5,000 - $15,000</SelectItem>
-                              <SelectItem value="15000-50000">$15,000 - $50,000</SelectItem>
-                              <SelectItem value="50000+">$50,000+</SelectItem>
+                              <SelectItem value="2000-5000">£2,000 - £5,000</SelectItem>
+                              <SelectItem value="5000-15000">£5,000 - £15,000</SelectItem>
+                              <SelectItem value="15000-50000">£15,000 - £50,000</SelectItem>
+                              <SelectItem value="50000+">£50,000+</SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage />
