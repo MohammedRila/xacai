@@ -12,6 +12,7 @@ export default function CTA() {
         <Button 
           size="lg"
           className="bg-background text-primary hover:bg-background/90 text-lg px-8 py-4"
+          onClick={() => window.open(`https://wa.me/12109758369?text=Hi%20XACAI,%20I'm%20ready%20to%20start%20and%20would%20like%20to%20get%20my%20AI%20strategy%20now.%20Please%20call%20me%20to%20discuss.`, '_blank')}
           data-testid="button-start-minutes"
         >
           <Calendar className="w-5 h-5 mr-2" />
