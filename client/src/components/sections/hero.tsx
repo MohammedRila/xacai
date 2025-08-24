@@ -91,7 +91,7 @@ export default function Hero() {
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary" data-testid="metric-savings">
-                    <CountUpNumber target={1.2} prefix="$" suffix="M" duration={2500} />
+                    <CountUpNumber target={1.2} prefix="£" suffix="M" duration={2500} />
                   </div>
                   <div className="text-sm text-muted-foreground">Costs Saved</div>
                 </div>
