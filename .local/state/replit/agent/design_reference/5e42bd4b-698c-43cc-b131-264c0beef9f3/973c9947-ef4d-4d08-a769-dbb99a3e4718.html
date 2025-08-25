@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XACAI - Advanced AI Solutions for Modern Business</title>
+    <meta name="description" content="Transform your business with XACAI's cutting-edge AI solutions. From competitive intelligence to market analysis, we deliver measurable results.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': {
+                            50: '#EEF2FF',
+                            500: '#6366F1',
+                            600: '#4F46E5',
+                            700: '#4338CA',
+                            900: '#312E81'
+                        },
+                        'violet': {
+                            500: '#8B5CF6',
+                            600: '#7C3AED'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 20px #6366F1; }
+            to { box-shadow: 0 0 30px #8B5CF6, 0 0 40px #8B5CF6; }
+        }
+        
+        .custom-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #6366F1, #8B5CF6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .nav-active {
+            background: linear-gradient(135deg, #6366F1, #8B5CF6);
+            color: white;
+            border-radius: 8px;
+            padding: 8px 16px;
+        }
+    </style>
+</head>
+<body class="font-inter bg-slate-50 text-slate-900">
+    <!-- @COMPONENT: Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-violet-500 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                        X
+                    </div>
+                    <span class="text-2xl font-bold text-slate-900">XACAI</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="nav-link text-slate-700 hover:text-primary-500 font-medium transition-colors" data-page="home">Home</a>
+                    <a href="#" class="nav-link text-slate-700 hover:text-primary-500 font-medium transition-colors" data-page="services">Services</a>
+                    <a href="#" class="nav-link text-slate-700 hover:text-primary-500 font-medium transition-colors" data-page="about">About</a>
+                    <a href="#" class="nav-link text-slate-700 hover:text-primary-500 font-medium transition-colors" data-page="contact">Contact</a>
+                    <a href="#" class="nav-link text-slate-700 hover:text-primary-500 font-medium transition-colors" data-page="terms">Terms</a>
+                </div>
+                
+                <!-- CTA Button -->
+                <div class="hidden md:block">
+                    <button class="bg-gradient-to-r from-primary-500 to-violet-500 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+                        Get Started
+                    </button>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-primary-500">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
+            <div class="px-4 py-3 space-y-3">
+                <a href="#" class="block nav-link text-slate-700 hover:text-primary-500 font-medium py-2" data-page="home">Home</a>
+                <a href="#" class="block nav-link text-slate-700 hover:text-primary-500 font-medium py-2" data-page="services">Services</a>
+                <a href="#" class="block nav-link text-slate-700 hover:text-primary-500 font-medium py-2" data-page="about">About</a>
+                <a href="#" class="block nav-link text-slate-700 hover:text-primary-500 font-medium py-2" data-page="contact">Contact</a>
+                <a href="#" class="block nav-link text-slate-700 hover:text-primary-500 font-medium py-2" data-page="terms">Terms</a>
+                <button class="w-full bg-gradient-to-r from-primary-500 to-violet-500 text-white px-6 py-2 rounded-lg font-semibold mt-3">
+                    Get Started
+                </button>
+            </div>
+        </div>
+    </nav>
+    <!-- @END_COMPONENT: Navigation -->
+
+    <!-- @COMPONENT: Page Container -->
+    <main class="pt-16">
+        <!-- Home Page -->
+        <div id="home-page" class="page-content">
+            <!-- Hero Section -->
+            <section class="relative min-h-screen flex items-center overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-primary-50 to-violet-50"></div>
+                <div class="absolute inset-0 opacity-5">
+                    <div class="absolute top-20 left-10 w-72 h-72 bg-primary-500 rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
+                    <div class="absolute top-40 right-10 w-72 h-72 bg-violet-500 rounded-full mix-blend-multiply filter blur-xl animate-float" style="animation-delay: 2s;"></div>
+                    <div class="absolute bottom-20 left-1/2 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl animate-float" style="animation-delay: 4s;"></div>
+                </div>
+                
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-8">
+                            <div class="space-y-6">
+                                <div class="inline-flex items-center px-4 py-2 bg-white/60 backdrop-blur-sm border border-primary-200 rounded-full text-primary-700 font-medium">
+                                    <i class="fas fa-star text-amber-500 mr-2"></i>
+                                    Trusted by 500+ enterprises worldwide
+                                </div>
+                                
+                                <h1 class="text-5xl lg:text-7xl font-bold leading-tight">
+                                    <span class="text-slate-900">Transform Your</span><br>
+                                    <span class="text-gradient">Business with AI</span>
+                                </h1>
+                                
+                                <p class="text-xl text-slate-600 leading-relaxed max-w-2xl">
+                                    We don't just implement AI—we craft intelligent solutions that adapt, learn, and evolve with your business. From competitive intelligence to predictive analytics, XACAI delivers measurable results that compound over time.
+                                </p>
+                            </div>
+                            
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <button class="bg-gradient-to-r from-primary-500 to-violet-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center">
+                                    <i class="fas fa-rocket mr-2"></i>
+                                    Start Your AI Journey
+                                </button>
+                                <button class="border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-xl font-semibold text-lg hover:border-primary-500 hover:text-primary-500 transition-all duration-300 flex items-center justify-center">
+                                    <i class="fas fa-play mr-2"></i>
+                                    Watch Demo
+                                </button>
+                            </div>
+                            
+                            <!-- Trust Indicators -->
+                            <div class="grid grid-cols-3 gap-6 pt-8">
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-primary-600">98%</div>
+                                    <div class="text-sm text-slate-600">Client Retention</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-primary-600">$50M+</div>
+                                    <div class="text-sm text-slate-600">Costs Saved</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-3xl font-bold text-primary-600">200+</div>
+                                    <div class="text-sm text-slate-600">AI Integrations</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="relative">
+                            <!-- Professional business team working together in modern office -->
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                                 alt="Professional team collaborating on AI solutions" 
+                                 class="rounded-2xl shadow-2xl hover-lift">
+                            <div class="absolute -bottom-6 -right-6 bg-white rounded-xl p-6 shadow-xl border border-slate-200">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
+                                    <span class="font-semibold text-slate-700">AI Systems Active</span>
+                                </div>
+                                <div class="text-2xl font-bold text-primary-600 mt-2">24/7</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Services Section -->
+            <section class="py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold text-slate-900 mb-6">
+                            Services Built for an <span class="text-gradient">AI-First Advantage</span>
+                        </h2>
+                        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                            From automation to analytics, we deliver outcomes that compound. Our human-centered approach ensures AI solutions that actually work for real businesses.
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Service 1 -->
+                        <div class="group bg-gradient-to-br from-slate-50 to-primary-50 rounded-2xl p-8 hover-lift border border-slate-200">
+                            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-violet-500 rounded-xl flex items-center justify-center mb-6 group-hover:animate-glow">
+                                <i class="fas fa-chart-line text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-4">AI Competitive Intelligence</h3>
+                            <p class="text-slate-600 mb-6">Track rivals, markets, and trends with real-time AI insight. We analyze millions of data points so you can make decisions with confidence, not guesswork.</p>
+                            <div class="flex items-center text-primary-600 font-semibold">
+                                <span>Learn More</span>
+                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 2 -->
+                        <div class="group bg-gradient-to-br from-slate-50 to-violet-50 rounded-2xl p-8 hover-lift border border-slate-200">
+                            <div class="w-16 h-16 bg-gradient-to-br from-violet-500 to-primary-500 rounded-xl flex items-center justify-center mb-6 group-hover:animate-glow">
+                                <i class="fas fa-cogs text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-4">AI Business Automation</h3>
+                            <p class="text-slate-600 mb-6">Automate processes end-to-end to cut costs and scale operations. From customer service to supply chain, we build automation that actually works.</p>
+                            <div class="flex items-center text-primary-600 font-semibold">
+                                <span>Learn More</span>
+                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 3 -->
+                        <div class="group bg-gradient-to-br from-slate-50 to-emerald-50 rounded-2xl p-8 hover-lift border border-slate-200">
+                            <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6 group-hover:animate-glow">
+                                <i class="fas fa-brain text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-4">Predictive Market Analysis</h3>
+                            <p class="text-slate-600 mb-6">Forecast demand and pricing with high-confidence predictions. Our models learn from your data to deliver insights that drive revenue growth.</p>
+                            <div class="flex items-center text-primary-600 font-semibold">
+                                <span>Learn More</span>
+                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 4 -->
+                        <div class="group bg-gradient-to-br from-slate-50 to-amber-50 rounded-2xl p-8 hover-lift border border-slate-200">
+                            <div class="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center mb-6 group-hover:animate-glow">
+                                <i class="fas fa-shield-alt text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-4">AI News & Regulation Monitoring</h3>
+                            <p class="text-slate-600 mb-6">Stay compliant and informed with proactive alerts. We monitor regulatory changes and industry news so you can adapt before your competitors.</p>
+                            <div class="flex items-center text-primary-600 font-semibold">
+                                <span>Learn More</span>
+                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 5 -->
+                        <div class="group bg-gradient-to-br from-slate-50 to-rose-50 rounded-2xl p-8 hover-lift border border-slate-200 md:col-span-2 lg:col-span-1">
+                            <div class="w-16 h-16 bg-gradient-to-br from-rose-500 to-pink-500 rounded-xl flex items-center justify-center mb-6 group-hover:animate-glow">
+                                <i class="fas fa-rocket text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-4">Custom AI Implementation</h3>
+                            <p class="text-slate-600 mb-6">From strategy to deployment—tailored AI for your stack. We don't do cookie-cutter solutions. Every implementation is designed for your specific business needs.</p>
+                            <div class="flex items-center text-primary-600 font-semibold">
+                                <span>Learn More</span>
+                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Why Choose XACAI Section -->
+            <section class="py-24 bg-gradient-to-br from-slate-900 to-slate-800 text-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold mb-6">Why Choose XACAI</h2>
+                        <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+                            We're not just another AI consultancy. We're your strategic partner in building an AI-powered future that actually delivers results.
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="glass-effect rounded-2xl p-8 hover-lift">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-check-circle text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-3">Proven Trust</h3>
+                                    <p class="text-slate-300">Enterprise-grade security, transparency, and delivery. We've helped Fortune 500 companies transform their operations with confidence and reliability.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-effect rounded-2xl p-8 hover-lift">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-violet-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-bolt text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-3">Speed to Value</h3>
+                                    <p class="text-slate-300">Weeks, not months—rapid pilots and measurable ROI. Our proven methodology gets you from concept to production faster than traditional consulting approaches.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-effect rounded-2xl p-8 hover-lift">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-lightbulb text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-3">Innovation Engine</h3>
+                                    <p class="text-slate-300">We ship, test, and iterate with you—continuously. Our agile approach means your AI solutions evolve with your business and stay ahead of the curve.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-effect rounded-2xl p-8 hover-lift">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-rose-500 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-target text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-3">Outcome-Driven</h3>
+                                    <p class="text-slate-300">We align to KPIs: cost down, efficiency up, revenue unlocked. Every project has clear success metrics and measurable business impact from day one.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Pricing Section -->
+            <section class="py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold text-slate-900 mb-6">
+                            Packages & Instant <span class="text-gradient">Onboarding</span>
+                        </h2>
+                        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                            Choose the plan that matches your ambition. Upgrade anytime as your AI needs grow.
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                        <!-- Starter Package -->
+                        <div class="border-2 border-slate-200 rounded-2xl p-8 hover-lift">
+                            <div class="mb-8">
+                                <h3 class="text-2xl font-bold text-slate-900 mb-2">AI Foundation</h3>
+                                <div class="text-4xl font-bold text-slate-900 mb-2">
+                                    $2,000
+                                    <span class="text-lg font-normal text-slate-600">one-time</span>
+                                </div>
+                                <p class="text-slate-600">Perfect for getting started with AI implementation</p>
+                            </div>
+                            
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-primary-500 mr-3"></i>
+                                    <span>AI audit & roadmap development</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-primary-500 mr-3"></i>
+                                    <span>Single AI implementation sprint</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-primary-500 mr-3"></i>
+                                    <span>30-day Slack support included</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-primary-500 mr-3"></i>
+                                    <span>Performance analytics dashboard</span>
+                                </li>
+                            </ul>
+                            
+                            <button class="w-full border-2 border-primary-500 text-primary-500 py-4 rounded-xl font-semibold text-lg hover:bg-primary-500 hover:text-white transition-all duration-300">
+                                Get Started Now
+                            </button>
+                        </div>
+                        
+                        <!-- Enterprise Package -->
+                        <div class="border-2 border-primary-500 rounded-2xl p-8 hover-lift relative bg-gradient-to-br from-primary-50 to-violet-50">
+                            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                                <span class="bg-gradient-to-r from-primary-500 to-violet-500 text-white px-6 py-2 rounded-full text-sm font-semibold">
+                                    Most Popular
+                                </span>
+                            </div>
+                            
+                            <div class="mb-8">
+                                <h3 class="text-2xl font-bold text-slate-900 mb-2">AI Acceleration</h3>
+                                <div class="text-4xl font-bold text-slate-900 mb-2">
+                                    $166
+                                    <span class="text-lg font-normal text-slate-600">/mo · 12 months</span>
+                                </div>
+                                <p class="text-slate-600">Comprehensive AI transformation for scaling businesses</p>
+                            </div>
+                            
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-primary-500 mr-3"></i>
+                                    <span>Dedicated AI lead & team access</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-primary-500 mr-3"></i>
+                                    <span>Ongoing AI automations & optimization</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-primary-500 mr-3"></i>
+                                    <span>Advanced predictive dashboards</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-primary-500 mr-3"></i>
+                                    <span>24/7 monitoring & support</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-primary-500 mr-3"></i>
+                                    <span>Custom AI model development</span>
+                                </li>
+                            </ul>
+                            
+                            <button class="w-full bg-gradient-to-r from-primary-500 to-violet-500 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                                Start Transformation
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Client Success Stories -->
+            <section class="py-24 bg-slate-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl font-bold text-slate-900 mb-6">Client Success Stories</h2>
+                        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                            Real businesses, real results. See how XACAI's AI solutions drive measurable outcomes.
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift">
+                            <div class="flex items-center mb-6">
+                                <!-- Technology startup office space with modern design -->
+                                <img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100" 
+                                     alt="Fintech startup CEO" 
+                                     class="w-16 h-16 rounded-full object-cover mr-4">
+                                <div>
+                                    <div class="font-semibold text-slate-900">Sarah Chen</div>
+                                    <div class="text-sm text-slate-600">COO, Fintech Scaleup</div>
+                                </div>
+                            </div>
+                            <p class="text-slate-700 mb-4 italic">
+                                "XACAI cut our ops costs by 32% in 90 days. The speed and precision of their AI implementations transformed how we operate."
+                            </p>
+                            <div class="text-primary-600 font-semibold">32% cost reduction in 90 days</div>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift">
+                            <div class="flex items-center mb-6">
+                                <!-- Professional business executive in corporate environment -->
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100" 
+                                     alt="Retail enterprise VP" 
+                                     class="w-16 h-16 rounded-full object-cover mr-4">
+                                <div>
+                                    <div class="font-semibold text-slate-900">Marcus Rodriguez</div>
+                                    <div class="text-sm text-slate-600">VP Strategy, Retail Enterprise</div>
+                                </div>
+                            </div>
+                            <p class="text-slate-700 mb-4 italic">
+                                "From chaos to clarity — we finally have predictive visibility into our supply chain and customer demand patterns."
+                            </p>
+                            <div class="text-primary-600 font-semibold">85% forecast accuracy improvement</div>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift">
+                            <div class="flex items-center mb-6">
+                                <!-- Female business leader in modern tech office -->
+                                <img src="https://pixabay.com/get/ge876b3676ae140272fe5e7a2c8cbbce16f5854bab4bb7113b7dae3dfc35dcc7e84afb6ba6b5049990dca4d89da577359dd188ac3df598926dc545b4f2e4b3c00_1280.jpg" 
+                                     alt="SaaS company head of CX" 
+                                     class="w-16 h-16 rounded-full object-cover mr-4">
+                                <div>
+                                    <div class="font-semibold text-slate-900">Jennifer Walsh</div>
+                                    <div class="text-sm text-slate-600">Head of CX, SaaS Unicorn</div>
+                                </div>
+                            </div>
+                            <p class="text-slate-700 mb-4 italic">
+                                "They ship real outcomes. Our AI helpdesk now resolves 74% of tickets autonomously with higher satisfaction scores."
+                            </p>
+                            <div class="text-primary-600 font-semibold">74% autonomous resolution rate</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- CTA Section -->
+            <section class="py-24 bg-gradient-to-br from-primary-600 to-violet-600 text-white">
+                <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-4xl font-bold mb-6">Get Your AI Strategy Now</h2>
+                    <p class="text-xl mb-8 text-primary-100">
+                        Book a 30-min discovery call — we'll map high-ROI AI use cases for you.
+                    </p>
+                    <button class="bg-white text-primary-600 px-8 py-4 rounded-xl font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-calendar-alt mr-2"></i>
+                        Start in Minutes
+                    </button>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Contact Us Page -->
+        <div id="contact-page" class="page-content hidden">
+            <section class="py-24 bg-gradient-to-br from-slate-50 to-primary-50 min-h-screen">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h1 class="text-5xl font-bold text-slate-900 mb-6">Get in Touch</h1>
+                        <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                            Ready to transform your business with AI? Let's start a conversation about your specific needs and goals.
+                        </p>
+                    </div>
+                    
+                    <div class="grid lg:grid-cols-2 gap-12">
+                        <!-- Contact Form -->
+                        <div class="bg-white rounded-2xl shadow-xl p-8">
+                            <h2 class="text-2xl font-bold text-slate-900 mb-6">Send us a Message</h2>
+                            <form class="space-y-6" data-implementation="Add form validation and submission handling">
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-semibold text-slate-700 mb-2">First Name *</label>
+                                        <input type="text" required class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors" placeholder="John">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-slate-700 mb-2">Last Name *</label>
+                                        <input type="text" required class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors" placeholder="Smith">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Email Address *</label>
+                                    <input type="email" required class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors" placeholder="john@company.com">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Company</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors" placeholder="Your Company Name">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Phone Number</label>
+                                    <input type="tel" class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors" placeholder="+1 (555) 123-4567">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Project Budget</label>
+                                    <select class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors">
+                                        <option>Select budget range</option>
+                                        <option>$2,000 - $5,000</option>
+                                        <option>$5,000 - $15,000</option>
+                                        <option>$15,000 - $50,000</option>
+                                        <option>$50,000+</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-700 mb-2">Project Details *</label>
+                                    <textarea required rows="4" class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors" placeholder="Tell us about your AI goals and current challenges..."></textarea>
+                                </div>
+                                
+                                <button type="submit" class="w-full bg-gradient-to-r from-primary-500 to-violet-500 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                                    <i class="fas fa-paper-plane mr-2"></i>
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- Contact Information -->
+                        <div class="space-y-8">
+                            <!-- Modern office workspace with team collaboration -->
+                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400" 
+                                 alt="Modern office workspace" 
+                                 class="rounded-2xl shadow-lg w-full">
+                            
+                            <div class="bg-white rounded-2xl shadow-xl p-8">
+                                <h3 class="text-xl font-bold text-slate-900 mb-6">Contact Information</h3>
+                                
+                                <div class="space-y-6">
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-violet-500 rounded-xl flex items-center justify-center mr-4">
+                                            <i class="fas fa-envelope text-white"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-slate-900">Email</div>
+                                            <div class="text-slate-600">hello@xacai.com</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-xl flex items-center justify-center mr-4">
+                                            <i class="fas fa-phone text-white"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-slate-900">Phone</div>
+                                            <div class="text-slate-600">+1 (555) 123-4567</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center mr-4">
+                                            <i class="fas fa-map-marker-alt text-white"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-slate-900">Office</div>
+                                            <div class="text-slate-600">123 Innovation Drive<br>San Francisco, CA 94105</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-rose-500 to-pink-500 rounded-xl flex items-center justify-center mr-4">
+                                            <i class="fas fa-clock text-white"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-slate-900">Business Hours</div>
+                                            <div class="text-slate-600">Mon-Fri: 9:00 AM - 6:00 PM PST</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-primary-600 to-violet-600 rounded-2xl p-8 text-white">
+                                <h3 class="text-xl font-bold mb-4">Ready to Get Started?</h3>
+                                <p class="text-primary-100 mb-6">
+                                    Schedule a free 30-minute discovery call to discuss your AI transformation goals.
+                                </p>
+                                <button class="bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    Book Discovery Call
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Terms & Conditions Page -->
+        <div id="terms-page" class="page-content hidden">
+            <section class="py-24 bg-white min-h-screen">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h1 class="text-5xl font-bold text-slate-900 mb-6">Terms & Conditions</h1>
+                        <p class="text-xl text-slate-600">
+                            Last updated: December 2024
+                        </p>
+                    </div>
+                    
+                    <div class="prose prose-lg max-w-none">
+                        <div class="bg-slate-50 rounded-2xl p-8 mb-8">
+                            <h2 class="text-2xl font-bold text-slate-900 mb-4">1. Agreement to Terms</h2>
+                            <p class="text-slate-700 leading-relaxed">
+                                By accessing and using XACAI's services, you agree to be bound by these Terms & Conditions. 
+                                If you disagree with any part of these terms, you may not access our services. These terms 
+                                apply to all visitors, users, and others who access or use our AI consulting services.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-slate-50 rounded-2xl p-8 mb-8">
+                            <h2 class="text-2xl font-bold text-slate-900 mb-4">2. Services Description</h2>
+                            <p class="text-slate-700 leading-relaxed mb-4">
+                                XACAI provides artificial intelligence consulting services, including but not limited to:
+                            </p>
+                            <ul class="list-disc list-inside text-slate-700 space-y-2">
+                                <li>AI competitive intelligence and market analysis</li>
+                                <li>Business process automation implementation</li>
+                                <li>Predictive analytics and forecasting solutions</li>
+                                <li>Custom AI model development and deployment</li>
+                                <li>Regulatory monitoring and compliance AI tools</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-slate-50 rounded-2xl p-8 mb-8">
+                            <h2 class="text-2xl font-bold text-slate-900 mb-4">3. Payment Terms</h2>
+                            <p class="text-slate-700 leading-relaxed mb-4">
+                                Payment is required before service delivery begins. We accept the following payment methods:
+                            </p>
+                            <ul class="list-disc list-inside text-slate-700 space-y-2 mb-4">
+                                <li>Credit cards (Visa, MasterCard, American Express)</li>
+                                <li>Bank transfers for enterprise accounts</li>
+                                <li>Net-30 terms for qualified enterprise clients</li>
+                            </ul>
+                            <p class="text-slate-700 leading-relaxed">
+                                All prices are in USD and exclude applicable taxes unless otherwise stated. 
+                                Refunds are available within 30 days of service initiation, subject to our refund policy.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-slate-50 rounded-2xl p-8 mb-8">
+                            <h2 class="text-2xl font-bold text-slate-900 mb-4">4. Intellectual Property</h2>
+                            <p class="text-slate-700 leading-relaxed">
+                                All custom AI models, algorithms, and solutions developed specifically for your business 
+                                remain your intellectual property upon full payment. XACAI retains ownership of our 
+                                proprietary methodologies, frameworks, and general AI techniques used in service delivery. 
+                                You grant us permission to use anonymized insights from your project to improve our services.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-slate-50 rounded-2xl p-8 mb-8">
+                            <h2 class="text-2xl font-bold text-slate-900 mb-4">5. Data Privacy & Security</h2>
+                            <p class="text-slate-700 leading-relaxed mb-4">
+                                We take data security seriously and implement industry-standard security measures:
+                            </p>
+                            <ul class="list-disc list-inside text-slate-700 space-y-2 mb-4">
+                                <li>End-to-end encryption for all data transmission</li>
+                                <li>SOC 2 Type II compliant infrastructure</li>
+                                <li>Regular security audits and penetration testing</li>
+                                <li>GDPR and CCPA compliance for applicable clients</li>
+                            </ul>
+                            <p class="text-slate-700 leading-relaxed">
+                                Your data will not be shared with third parties without explicit consent, except as 
+                                required by law or to provide the contracted services.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-slate-50 rounded-2xl p-8 mb-8">
+                            <h2 class="text-2xl font-bold text-slate-900 mb-4">6. Service Level Agreements</h2>
+                            <p class="text-slate-700 leading-relaxed mb-4">
+                                We commit to the following service levels:
+                            </p>
+                            <ul class="list-disc list-inside text-slate-700 space-y-2">
+                                <li>99.9% uptime for deployed AI systems during business hours</li>
+                                <li>24-hour response time for critical support issues</li>
+                                <li>Weekly progress reports during active project phases</li>
+                                <li>30-day onboarding completion for standard packages</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-slate-50 rounded-2xl p-8 mb-8">
+                            <h2 class="text-2xl font-bold text-slate-900 mb-4">7. Limitation of Liability</h2>
+                            <p class="text-slate-700 leading-relaxed">
+                                XACAI's liability is limited to the amount paid for services in the 12 months preceding 
+                                any claim. We are not liable for indirect, incidental, or consequential damages. 
+                                While we strive for accuracy in AI predictions and recommendations, results may vary 
+                                based on data quality and market conditions.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-slate-50 rounded-2xl p-8 mb-8">
+                            <h2 class="text-2xl font-bold text-slate-900 mb-4">8. Termination</h2>
+                            <p class="text-slate-700 leading-relaxed">
+                                Either party may terminate services with 30 days written notice. Upon termination, 
+                                you retain access to all deliverables and AI systems already deployed. Ongoing 
+                                monitoring and support services will cease unless separately contracted.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-slate-50 rounded-2xl p-8 mb-8">
+                            <h2 class="text-2xl font-bold text-slate-900 mb-4">9. Governing Law</h2>
+                            <p class="text-slate-700 leading-relaxed">
+                                These terms are governed by the laws of the State of California, USA. Any disputes 
+                                will be resolved through binding arbitration in San Francisco, California, except 
+                                for claims that can be brought in small claims court.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-primary-50 border border-primary-200 rounded-2xl p-8">
+                            <h2 class="text-2xl font-bold text-slate-900 mb-4">10. Contact Information</h2>
+                            <p class="text-slate-700 leading-relaxed mb-4">
+                                For questions about these Terms & Conditions, please contact us:
+                            </p>
+                            <div class="text-slate-700">
+                                <p><strong>Email:</strong> legal@xacai.com</p>
+                                <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                                <p><strong>Address:</strong> 123 Innovation Drive, San Francisco, CA 94105</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!-- @END_COMPONENT: Page Container -->
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-violet-500 rounded-xl flex items-center justify-center text-white font-bold text-xl">
+                            X
+                        </div>
+                        <span class="text-2xl font-bold">XACAI</span>
+                    </div>
+                    <p class="text-slate-300 mb-6 max-w-md">
+                        Building Tomorrow's Businesses Today. We implement, manage, and innovate AI solutions 
+                        so your business stays ahead — always.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-primary-500 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-primary-500 transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-primary-500 transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2 text-slate-300">
+                        <li><a href="#" class="hover:text-white transition-colors">AI Intelligence</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Business Automation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Market Analysis</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Custom Implementation</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2 text-slate-300">
+                        <li><a href="#" class="hover:text-white transition-colors nav-link" data-page="about">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors nav-link" data-page="contact">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors nav-link" data-page="terms">Terms & Conditions</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-800 pt-8 mt-8 text-center text-slate-400">
+                <p>&copy; 2024 XACAI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // Navigation functionality
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page-content');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // Page navigation
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Hide all pages
+                    pages.forEach(page => page.classList.add('hidden'));
+                    
+                    // Show target page
+                    const targetPageElement = document.getElementById(targetPage + '-page');
+                    if (targetPageElement) {
+                        targetPageElement.classList.remove('hidden');
+                    }
+                    
+                    // Update nav active state
+                    navLinks.forEach(navLink => navLink.classList.remove('nav-active'));
+                    this.classList.add('nav-active');
+                    
+                    // Close mobile menu
+                    mobileMenu.classList.add('hidden');
+                    
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Set home as active by default
+            document.querySelector('[data-page="home"]').classList.add('nav-active');
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Form validation placeholder
+            const contactForm = document.querySelector('form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // TODO: Implement form validation and submission
+                    alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
